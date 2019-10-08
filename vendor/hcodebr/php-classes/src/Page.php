@@ -5,9 +5,7 @@
     class Page{
         private $tpl;
         private $defaults = [
-            "data" =>[
-                
-            ]
+            "data" =>[]
         ];
 
         public function __construct($opts = array(), $tpl_dir = "/views/"){
