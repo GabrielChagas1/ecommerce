@@ -770,3 +770,13 @@ function _init() {
     });
   };
 }(jQuery));
+
+$(document).ready(function(){
+  $( "#senha" ).mousedown(function() {
+    $("#senha").attr("type", "text");
+  });
+  
+  $( "#senha" ).mouseup(function() {
+    $("#senha").attr("type", "password");
+  });
+});
