@@ -7,6 +7,7 @@ use \Slim\Slim;
 use \Hcode\Page;
 use \Hcode\PageAdmin;
 use\Hcode\Model\User;
+use\Hcode\Model\Category;
 
 $app = new Slim();
 
@@ -104,8 +105,32 @@ $app->post("/admin/users/:iduser", function($iduser){
    header("Location: /admin/users");
    exit;
 });
-
 //fim routes de usuários
+
+// routes para categorias
+$app->get("/admin/categories", function(){
+   User::verifyLogin();
+   $categories = Category::ListAll();
+   $page = new PageAdmin();
+   $page->setTpl("categories", array("categories" =>  $categories));
+
+});
+
+$app->get("/admin/categories/create", function(){
+   User::verifyLogin();
+   $page = new PageAdmin();
+   $page->setTpl("categories-create");
+});
+
+//cadastrando categorias
+$app->post("/admin/categories/create", function(){
+   User::verifyLogin();
+   $categories = new Category();
+   $categories->setData($_POST);
+   $categories->save();
+   header("Location: /admin/categories");
+   exit;
+});
 
 $app->run();
 
