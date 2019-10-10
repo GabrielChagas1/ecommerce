@@ -132,6 +132,15 @@ $app->post("/admin/categories/create", function(){
    exit;
 });
 
+$app->get("/admin/categories/:idcategory/delete", function($idcategory){
+   $category = new Category();
+   $category->get((int)$idcategory);
+   $category->delete();
+   header('Location: /admin/categories');
+   exit;
+});
+
+
 $app->run();
 
 ?>

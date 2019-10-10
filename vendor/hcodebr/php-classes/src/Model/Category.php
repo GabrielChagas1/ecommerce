@@ -18,10 +18,10 @@ class Category extends Model {
 		return $sql->select("SELECT * FROM tb_categories ORDER BY descategory");
 	}
 
-	public function get($iduser){
+	public function get($idcategory){
 		$sql = new Sql();
-		$results = $sql->select("SELECT * FROM tb_users u INNER JOIN tb_persons p USING(idperson) WHERE u.iduser = :iduser", array(
-			":iduser" => $iduser 
+		$results = $sql->select("SELECT * FROM tb_categories WHERE idcategory = :idcategory", array(
+			":idcategory" => $idcategory 
 		));
 		$this->setData($results[0]);
 	}
@@ -55,9 +55,9 @@ class Category extends Model {
 
 	public function delete(){
 		$sql = new Sql();
-		$results = $sql->select("CALL sp_users_delete(:iduser)", 
+		$results = $sql->select("DELETE FROM tb_categories WHERE idcategory = :idcategory", 
 			array(
-			":iduser" => $this->getiduser()
+			":idcategory" => $this->getidcategory()
 		));
 	}
 
