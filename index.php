@@ -107,6 +107,15 @@ $app->post("/admin/users/:iduser", function($iduser){
 
 //fim routes de usuários
 
+//routes para cateogrias
+$app->get("/admin/categories", function(){
+   User::verifyLogin();
+   $categories = Categories::ListAll();
+   $page = new PageAdmin();
+   $page->setTpl("categories", array("categories" =>  $categories));
+
+});
+
 $app->run();
 
 ?>
