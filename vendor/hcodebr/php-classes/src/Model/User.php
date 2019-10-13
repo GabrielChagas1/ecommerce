@@ -124,7 +124,6 @@ class User extends Model {
 		));
 	}
 
-
 }
 
 ?>
