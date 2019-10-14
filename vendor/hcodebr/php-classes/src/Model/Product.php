@@ -18,6 +18,16 @@ class Product extends Model {
 		return $sql->select("SELECT * FROM tb_products ORDER BY desproduct");
 	}
 
+	public static function checkList($list){
+		foreach ($list as &$row) {
+			$product = new Product();
+			$product->setData($row);
+			$row = $product->getValues();
+		}
+
+		return $list;
+	}
+
 	public function get($idproduct){
 		$sql = new Sql();
 		$results = $sql->select("SELECT * FROM tb_products WHERE idproduct = :idproduct", array(

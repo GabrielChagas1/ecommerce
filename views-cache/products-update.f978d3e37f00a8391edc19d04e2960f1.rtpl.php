@@ -15,6 +15,7 @@
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Editar Produto</h3>
+              <a href="/admin/products" class="btn btn-danger" style="float: right;"><i class="fa fa-arrow-left"></i> Voltar</a>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
