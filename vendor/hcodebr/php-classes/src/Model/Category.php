@@ -116,7 +116,7 @@ class Category extends Model {
 		]);
 	}
 
-	public function getProductsPage($page = 1, $itemsPerPage = 1){
+	public function getProductsPage($page = 1, $itemsPerPage = 8){
 
 		$start = ($page - 1) * $itemsPerPage;
 
@@ -139,7 +139,6 @@ class Category extends Model {
 			'data' => Product::checkList($results),
 			'total' => (int)$resultTotal[0]['nrtotal'],
 			'pages' => ceil($resultTotal[0]['nrtotal'] / $itemsPerPage)
-
 		];
 
 	}
