@@ -7,43 +7,43 @@ use \Hcode\DB\Sql;
 
 class User extends Model {
 
+	protected $fields = [
+		"iduser", "idperson", "deslogin", "despassword", "inadmin", "dtergister"
+	];
+
 	const SESSION = "User";
 	const SECRET = "hcodePhp7_secret";
 
-	public static function getFromSession(){
+	public static function getFromSession()
+	{
 		$user = new User();
-		if(isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['iduser'] > 0){
+		if (isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['iduser'] > 0) {
 			$user->setData($_SESSION[User::SESSION]);
 		}
 		return $user;
 	}
 
-	public static function checkLogin($inadmin = true){
-		if(
+	public static function checkLogin($inadmin = true)
+	{
+		if (
 			!isset($_SESSION[User::SESSION])
-			|| 
+			||
 			!$_SESSION[User::SESSION]
 			||
 			!(int)$_SESSION[User::SESSION]["iduser"] > 0
-		){
-			//não está logado
+		) {
+			//Não está logado
 			return false;
-		}
-		if($inadmin === true && (bool)$_SESSION[User::SESSION]["inadmin"] === true){
-			//logado
-			return true;
-		}else if($inadmin === false){
-			//logado
-			return true;
-		}else{
-			// não está logado
-			return false;
+		} else {
+			if ($inadmin === true && (bool)$_SESSION[User::SESSION]['inadmin'] === true) {
+				return true;
+			} else if ($inadmin === false) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
-
-	protected $fields = [
-		"iduser", "idperson", "deslogin", "despassword", "inadmin", "dtergister"
-	];
 
 	public static function login($login, $password):User
 	{
@@ -86,15 +86,15 @@ class User extends Model {
 
 	public static function verifyLogin($inadmin = true)
 	{
-
-		if (User::checkLogin($inadmin)) {
-			header("Location: /admin/login");
+		if (!User::checkLogin($inadmin)) {
+			if ($inadmin) {
+				header("Location: /admin/login");
+			} else {
+				header("Location: /login");
+			}
 			exit;
-
 		}
-
 	}
-
 	public static function ListAll(){
 		$sql = new Sql();
 		return $sql->select("SELECT * FROM tb_users u INNER JOIN tb_persons p USING(idperson) ORDER BY p.desperson");
