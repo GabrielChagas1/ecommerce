@@ -8,6 +8,38 @@ use \Hcode\DB\Sql;
 class User extends Model {
 
 	const SESSION = "User";
+	const SECRET = "hcodePhp7_secret";
+
+	public static function getFromSession(){
+		$user = new User();
+		if(isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]['iduser'] > 0){
+			$user->setData($_SESSION[User::SESSION]);
+		}
+		return $user;
+	}
+
+	public static function checkLogin($inadmin = true){
+		if(
+			!isset($_SESSION[User::SESSION])
+			|| 
+			!$_SESSION[User::SESSION]
+			||
+			!(int)$_SESSION[User::SESSION]["iduser"] > 0
+		){
+			//não está logado
+			return false;
+		}
+		if($inadmin === true && (bool)$_SESSION[User::SESSION]["inadmin"] === true){
+			//logado
+			return true;
+		}else if($inadmin === false){
+			//logado
+			return true;
+		}else{
+			// não está logado
+			return false;
+		}
+	}
 
 	protected $fields = [
 		"iduser", "idperson", "deslogin", "despassword", "inadmin", "dtergister"
@@ -55,16 +87,7 @@ class User extends Model {
 	public static function verifyLogin($inadmin = true)
 	{
 
-		if (
-			!isset($_SESSION[User::SESSION])
-			|| 
-			!$_SESSION[User::SESSION]
-			||
-			!(int)$_SESSION[User::SESSION]["iduser"] > 0
-			||
-			(bool)$_SESSION[User::SESSION]["iduser"] !== $inadmin
-		) {
-			
+		if (User::checkLogin($inadmin)) {
 			header("Location: /admin/login");
 			exit;
 

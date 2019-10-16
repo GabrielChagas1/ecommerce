@@ -80,7 +80,7 @@
 <div class="zigzag-bottom"></div>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" id="products"> 
             <div class="latest-product">
                 <h2 class="section-title">Produtos</h2>
                 <div class="product-carousel">

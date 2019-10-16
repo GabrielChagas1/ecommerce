@@ -4,6 +4,7 @@ use \Hcode\PageAdmin;
 use \Hcode\Page;
 use \Hcode\Model\Product;
 use \Hcode\Model\Category;
+use \Hcode\Model\Cart;
 
 //route para o site
 $app->get('/', function() {
@@ -13,6 +14,7 @@ $app->get('/', function() {
     $page->setTpl("index", ['products' => Product::checkList($products)]);
 });
 
+//categoria
 $app->get('/categories/:idcategory', function($idcategory) {
     $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
     $category = new Category();
@@ -33,6 +35,7 @@ $app->get('/categories/:idcategory', function($idcategory) {
     ]);
 });
 
+//detalhes do produto
 $app->get("/product/:desurl", function($desurl){
     $product = new Product();
     $product->getFromURL($desurl);
@@ -42,5 +45,12 @@ $app->get("/product/:desurl", function($desurl){
         'categories' => $product->getCategories()
     ]);
 });
+
+//carrinho de compras
+$app->get("/cart", function(){
+    $cart = Cart::getFromSession();
+    $page = new Page();
+    $page->setTpl("cart");
+})
 
 ?>
