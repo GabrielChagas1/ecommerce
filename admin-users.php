@@ -36,7 +36,8 @@ $page = new PageAdmin();
 $page->setTpl("users-update", array("user" => $user->getValues()
 ));
 });
- //cadastrando usuário
+
+//cadastrando usuário
 $app->post("/admin/users/create", function(){
 User::verifyLogin();
 $user = new User();
@@ -46,6 +47,22 @@ $user->save();
 header("Location: /admin/users");
 exit;
 });
+
+// $app->post("/admin/users/create", function () {
+
+//    User::verifyLogin();
+//   $user = new User();
+//    $_POST["inadmin"] = (isset($_POST["inadmin"])) ? 1 : 0;
+//    $_POST['despassword'] = password_hash($_POST["despassword"], PASSWORD_DEFAULT, [
+//       "cost"=>12
+//    ]);
+//    $user->setData($_POST);
+//    $user->save();
+//   header("Location: /admin/users");
+//    exit;
+
+// });
+
 
  //editando usuário
 $app->post("/admin/users/:iduser", function($iduser){

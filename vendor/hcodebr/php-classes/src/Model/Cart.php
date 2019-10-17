@@ -199,13 +199,6 @@ class Cart extends Model {
 	{
 		$this->updateFreight();
 		$totals = $this->getProductsTotals();
-		if($totals['vlprice'] == NULL){
-			$totals['vlprice'] = (float)0;
-		}
-		// if($this->getvlfreight() == NULL){
-		// 	$this->setvlfreight() = 0;
-
-		// }
 		$this->setvlsubtotal($totals['vlprice']);
 		$this->setvltotal($totals['vlprice'] + (float)$this->getvlfreight());
 	}
