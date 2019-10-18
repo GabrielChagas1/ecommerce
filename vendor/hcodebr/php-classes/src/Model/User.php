@@ -15,6 +15,7 @@ class User extends Model {
 	const SECRET = "hcodePhp7_secret";
 	const ERROR = "UserError";
 	const ERROR_REGISTER = "UserErrorRegister";
+	const SUCCESS = "UserSucesss";
 
 	public static function getFromSession()
 	{
@@ -131,6 +132,22 @@ class User extends Model {
 		$this->setData($results[0]);
 	}
 
+	public function updateUserSite(){
+		$sql = new Sql();
+		$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", 
+			array(
+			":iduser" => $this->getiduser(),
+			":desperson" => $this->getdesperson(),
+			":deslogin" => $this->getdeslogin(),
+			":despassword" => $this->getdespassword(),
+			":desemail" => $this->getdesemail(),
+			":nrphone" => $this->getnrphone(),
+			":inadmin" => $this->getinadmin()
+		));
+
+		$this->setData($results[0]);
+	}
+
 	public function delete(){
 		$sql = new Sql();
 		$results = $sql->select("CALL sp_users_delete(:iduser)", 
@@ -152,6 +169,21 @@ class User extends Model {
 	public static function clearError()
 	{
 		$_SESSION[User::ERROR] = NULL;
+	}
+
+	public static function setSuccess($msg)
+	{
+		$_SESSION[User::SUCCESS] = $msg;
+	}
+	public static function getSuccess()
+	{
+		$msg = (isset($_SESSION[User::SUCCESS]) && $_SESSION[User::SUCCESS]) ? $_SESSION[User::SUCCESS] : '';
+		User::clearSuccess();
+		return $msg;
+	}
+	public static function clearSuccess()
+	{
+		$_SESSION[User::SUCCESS] = NULL;
 	}
 
 	public static function setErrorRegister($msg)
