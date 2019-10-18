@@ -2,8 +2,11 @@
 namespace Hcode\Model;
 use \Hcode\DB\Sql;
 use \Hcode\Model;
+
 class Address extends Model {
+
 	const SESSION_ERROR = "AddressError";
+
 	public static function getCEP($nrcep)
 	{
 		$nrcep = str_replace("-", "", $nrcep);
