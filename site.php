@@ -155,23 +155,19 @@ $app->post("/checkout", function(){
 	$_POST['deszipcode'] = $_POST['zipcode'];
 	$_POST['idperson'] = $user->getidperson();
 	$address->setData($_POST);
-	// var_dump($address);
-	// exit;
 	$address->save();
-	// var_dump($address->save());
-	// exit;
-	// $cart = Cart::getFromSession();
-	// $cart->getCalculateTotal();
-	// $order = new Order();
-	// $order->setData([
-	// 	'idcart'=>$cart->getidcart(),
-	// 	'idaddress'=>$address->getidaddress(),
-	// 	'iduser'=>$user->getiduser(),
-	// 	'idstatus'=>OrderStatus::EM_ABERTO,
-	// 	'vltotal'=>$cart->getvltotal()
-	// ]);
-	// $order->save();
-	header("Location: /order");
+	$cart = Cart::getFromSession();
+	$cart->getCalculateTotal();
+	$order = new Order();
+	$order->setData([
+		'idcart'=>$cart->getidcart(),
+		'idaddress'=>$address->getidaddress(),
+		'iduser'=>$user->getiduser(),
+		'idstatus'=>OrderStatus::EM_ABERTO,
+		'vltotal'=>$cart->getvltotal()
+	]);
+	$order->save();
+	header("Location: /order/$order");
 	exit;
 });
 
@@ -272,12 +268,20 @@ $app->post("/profile", function(){
 	$_POST['despassword'] = $user->getdespassword();
 	$_POST['deslogin'] = $_POST['desemail'];
 	$user->setData($_POST);
-	// var_dump($user);
-	// exit;
 	$user->updateUserSite(false);
 	User::setSuccess("Dados alterados com sucesso!");
 	$_SESSION[User::SESSION] = $user->getValues();
 	header('Location: /profile');
 	exit;
+});
+
+$app->get("/order/:idorder", function($idorder){
+	User::verifyLogin(false);
+	$order = new Order();
+	$order->get((int)$idorder);
+	$page = new Page();
+	$page->setTpl("payment", [
+		'order'=>$order->getValues()
+	]);
 });
 
