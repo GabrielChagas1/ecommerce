@@ -167,6 +167,7 @@ $app->post("/checkout", function(){
 		'vltotal'=>$cart->getvltotal()
 	]);
 	$order->save();
+	$_SESSION[Cart::SESSION]['idcart'] = 0;
 	header("Location: /order/".$order->getidorder());
 	exit;
 });
@@ -356,12 +357,17 @@ $app->get("/profile/orders/:idorder", function($idorder){
 	$cart = new Cart();
 	$cart->get((int)$order->getidcart());
 	$cart->getCalculateTotal();
+	//var_dump($order->getValues());
+	//var_dump($cart->getValues());
+	// var_dump((int)$order->getidcart());
+	// exit;
 	$page = new Page();
 	$page->setTpl("profile-orders-detail", [
 		'order'=>$order->getValues(),
 		'cart'=>$cart->getValues(),
 		'products'=>$cart->getProducts()
 	]);	
+
 });
 
 $app->get("/profile/change-password", function(){

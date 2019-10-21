@@ -1,0 +1,2 @@
+limpar carrinho ao terminar compra
+logar e ir para a page principal

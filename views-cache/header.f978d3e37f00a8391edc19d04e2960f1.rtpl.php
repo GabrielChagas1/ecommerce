@@ -240,7 +240,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="active"><a href="/admin/users"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
         <li><a href="/admin/categories"><i class="fa fa-link"></i> <span>Categorias</span></a></li>
         <li><a href="/admin/products"><i class="fa fa-gamepad"></i> <span>Produtos</span></a></li>
-        <li><a href="/admin/orders"><i class="fa fa-gamepad"></i> <span>Pedidos</span></a></li>
+        <li><a href="/admin/orders"><i class="fa fa-external-link-square"></i> <span>Pedidos</span></a></li>
         <!-- <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
