@@ -130,7 +130,7 @@ class Order extends Model {
 			INNER JOIN tb_users d ON d.iduser = a.iduser
 			INNER JOIN tb_addresses e USING(idaddress)
 			INNER JOIN tb_persons f ON f.idperson = d.idperson
-			WHERE a.idorder = :id OR f.desperson LIKE :search
+			WHERE a.idorder = :id OR f.desperson LIKE :search or b.desstatus LIKE :search
 			ORDER BY a.dtregister DESC
 			LIMIT $start, $itemsPerPage;
 		", [
