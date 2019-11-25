@@ -46,6 +46,18 @@
                   <input type="number" class="form-control" id="vlweight" name="vlweight" step="0.01" placeholder="0.00" value="<?php echo htmlspecialchars( $product["vlweight"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                 </div>
                 <div class="form-group">
+                    <label for="desproduct">Fornecedores</label>
+                    <select class="form-control" name="idprovider">
+                        <option value="0" disabled selected>Escolha um fornecedor</option>
+      
+                        <?php $counter1=-1;  if( isset($providers) && ( is_array($providers) || $providers instanceof Traversable ) && sizeof($providers) ) foreach( $providers as $key1 => $value1 ){ $counter1++; ?>
+
+                          <option <?php if( $value1["idprovider"] === $product["idprovider"] ){ ?>selected="selected"<?php } ?> value="<?php echo htmlspecialchars( $value1["idprovider"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["desnamecorporate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                        <?php } ?>
+
+                    </select>
+                  </div>
+                <div class="form-group">
                   <label for="file">Foto</label>
                   <input type="file" class="form-control" id="file" name="file" value="<?php echo htmlspecialchars( $product["vlweight"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                   <div class="box box-widget">

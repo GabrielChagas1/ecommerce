@@ -13,6 +13,13 @@ class Category extends Model {
 		"idcategory", "descategory", "dtregister"
 	];
 
+	public function getTotals(){
+		$sql = new Sql();
+
+		$rows = $sql->select("SELECT COUNT(*) FROM tb_categories");
+		return $rows[0];
+	}
+
 	public static function ListAll(){
 		$sql = new Sql();
 		return $sql->select("SELECT * FROM tb_categories ORDER BY descategory");
@@ -28,6 +35,8 @@ class Category extends Model {
 
 	public function save(){
 		$sql = new Sql();
+		// var_dump($this->getdescategory());
+    	// exit;
 		$results = $sql->select("CALL sp_categories_save(:idcategory, :descategory)", 
 			array(
 			":idcategory" => $this->getidcategory(),

@@ -2,12 +2,26 @@
 
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
+use \Hcode\Model\Category;
+use \Hcode\Model\Provider;
+use \Hcode\Model\Product;
+use \Hcode\Model\Order;
 
 //route para o admin
 $app->get('/admin', function() {
-	User::verifyLogin();
+   User::verifyLogin();
+   $category = new Category();
+   $providers = new Provider();
+   $products = new Product();
+   
+   $orders = new Order();
 	$page = new Hcode\PageAdmin();
-	$page->setTpl("index");
+	$page->setTpl("index", [
+      "category" => $category->getTotals(),
+      "providers" => $providers->getTotals(),
+      "products" => $products->getTotals(),
+      "orders" => $orders->getTotals(),
+   ]);
 
 });
 

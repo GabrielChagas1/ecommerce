@@ -50,9 +50,21 @@
               <input type="number" class="form-control" id="vlweight" name="vlweight" step="0.01" placeholder="0.00">
             </div>
             <div class="form-group">
-                <label for="desurl">URL</label>
-                <input type="text" class="form-control" id="desurl" name="desurl">
-              </div>
+              <label for="desurl">URL</label>
+              <input type="text" class="form-control" id="desurl" name="desurl">
+            </div>
+            <div class="form-group">
+              <label for="desproduct">Fornecedores</label>
+              <select class="form-control" name="idfornecedor">
+                  <option value="0" disabled selected>Escolha um fornecedor</option>
+
+                  <?php $counter1=-1;  if( isset($providers) && ( is_array($providers) || $providers instanceof Traversable ) && sizeof($providers) ) foreach( $providers as $key1 => $value1 ){ $counter1++; ?>
+
+                  <option value="<?php echo htmlspecialchars( $value1["idprovider"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["desnamecorporate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                  <?php } ?>
+
+              </select>
+            </div>
           </div>
           <!-- /.box-body -->
           <div class="box-footer">

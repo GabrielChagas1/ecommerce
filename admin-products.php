@@ -3,6 +3,7 @@
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
 use \Hcode\Model\Product;
+use \Hcode\Model\Provider;
 
 
 // Routes para os produtos
@@ -45,9 +46,13 @@ $app->get("/admin/products/:idproduct/delete", function($idproduct){
     });
 
 $app->get("/admin/products/create", function(){
-    User::verifyLogin();
+	User::verifyLogin();
+	$providers = new Provider();
+	$list = $providers->ListAll();
     $page = new PageAdmin();
-    $page->setTpl("products-create"); 
+    $page->setTpl("products-create", [
+		"providers" => $list
+	]); 
 });
 
 $app->post("/admin/products/create", function(){
@@ -59,18 +64,23 @@ $app->post("/admin/products/create", function(){
 	exit;
 });
 $app->get("/admin/products/:idproducts", function($idproducts){
-    User::verifyLogin();
+	User::verifyLogin();
+	$providers = new Provider();
+	$list = $providers->ListAll();
     $product = new Product();
     $product->get((int)$idproducts);
     $page = new PageAdmin();
-    $page->setTpl("products-update", array("product" => $product->getValues())); 
+    $page->setTpl("products-update", array(
+		"product" => $product->getValues(), 
+		"providers" => $list
+	)); 
 });
 
 $app->post("/admin/products/:idproduct", function($idproduct){
 	User::verifyLogin();
 	$product = new Product();
     $product->get((int)$idproduct);
-    $product->setData($_POST);
+	$product->setData($_POST);
     $product->save();
 
     //verifica se tem upload de uma foto

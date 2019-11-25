@@ -9,9 +9,9 @@ class Product extends Model {
 
 	const SESSION = "User";
 
-	// protected $fields = [
-	// 	"pidproduct", "pdesproduct", "pvlprice", "pvlwidth", "pvlheigth", "pvllength", "pvlweight", "pdesurl"
-	// ];
+	protected $fields = [
+		"idproduct", "desproduct", "vlprice", "vlwidth", "vlheigth", "vllength", "vlweight", "desurl", "idprovider"
+	];
 
 	public static function ListAll(){
 		$sql = new Sql();
@@ -38,7 +38,7 @@ class Product extends Model {
 
 	public function save(){
 		$sql = new Sql();
-		$results = $sql->select("CALL sp_products_save(:idproduct, :desproduct, :vlprice, :vlwidth, :vlheight, :vllength, :vlweight, :desurl)", array(
+		$results = $sql->select("CALL sp_products_save(:idproduct, :desproduct, :vlprice, :vlwidth, :vlheight, :vllength, :vlweight, :desurl, :idprovider)", array(
 			":idproduct"=>$this->getidproduct(),
 			":desproduct"=>$this->getdesproduct(),
 			":vlprice"=>$this->getvlprice(),
@@ -46,7 +46,8 @@ class Product extends Model {
 			":vlheight"=>$this->getvlheight(),
 			":vllength"=>$this->getvllength(),
 			":vlweight"=>$this->getvlweight(),
-			":desurl"=>$this->getdesurl()
+			":desurl"=>$this->getdesurl(),
+			":idprovider"=>$this->getidprovider()
 		));
 		$this->setData($results[0]);
 	}
@@ -118,6 +119,13 @@ class Product extends Model {
 		return $this->setData($rows[0]);
 	}
 
+	public function getTotals(){
+		$sql = new Sql();
+
+		$rows = $sql->select("SELECT COUNT(*) FROM tb_products");
+		return $rows[0];
+	}
+
 	public function getCategories(){
 		$sql = new Sql();
 		
@@ -163,6 +171,8 @@ class Product extends Model {
 			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
 		];
 	}
+
+
 
 
 }

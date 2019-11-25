@@ -46,6 +46,16 @@
                   <input type="number" class="form-control" id="vlweight" name="vlweight" step="0.01" placeholder="0.00" value="{$product.vlweight}">
                 </div>
                 <div class="form-group">
+                    <label for="desproduct">Fornecedores</label>
+                    <select class="form-control" name="idprovider">
+                        <option value="0" disabled selected>Escolha um fornecedor</option>
+      
+                        {loop="$providers"}
+                          <option {if="$value.idprovider === $product.idprovider"}selected="selected"{/if} value="{$value.idprovider}">{$value.desnamecorporate}</option>
+                        {/loop}
+                    </select>
+                  </div>
+                <div class="form-group">
                   <label for="file">Foto</label>
                   <input type="file" class="form-control" id="file" name="file" value="{$product.vlweight}">
                   <div class="box box-widget">
