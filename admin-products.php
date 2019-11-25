@@ -60,6 +60,10 @@ $app->post("/admin/products/create", function(){
 	$product = new Product();
     $product->setData($_POST);
 	$product->save();
+	//verifica se tem upload de uma foto
+    if($_FILES["file"]["size"] > 0){
+        $product->setPhoto($_FILES["file"]);
+    }
 	header("Location: /admin/products");
 	exit;
 });
@@ -81,10 +85,9 @@ $app->post("/admin/products/:idproduct", function($idproduct){
 	$product = new Product();
     $product->get((int)$idproduct);
 	$product->setData($_POST);
-    $product->save();
-
+	$product->save();
     //verifica se tem upload de uma foto
-    if(isset($_POST["file"])){
+    if($_FILES["file"]["size"] > 0){
         $product->setPhoto($_FILES["file"]);
     }
 

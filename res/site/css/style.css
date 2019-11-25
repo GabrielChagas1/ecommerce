@@ -444,8 +444,8 @@ z-index: 999;}
   overflow: hidden;
 }
 .single-product:hover {}
-.single-product:hover .product-hover a.add-to-cart-link {top: 32%;}
-.single-product:hover .product-hover a.view-details-link {bottom: 32%;}
+.single-product:hover .product-hover a.add-to-cart-link {top: 50%;}
+.single-product:hover .product-hover a.view-details-link {bottom: 50%;}
 .single-product:hover .product-hover:after{left: 0}
 
 
@@ -580,7 +580,7 @@ padding: 35px 0 180px;}
 
 
 .footer-social a {
-  background: none repeat scroll 0 0 #006500;
+  background: none repeat scroll 0 0#4db6e5;
   color: #fff;
   display: inline-block;
   font-size: 20px;
@@ -589,7 +589,7 @@ padding: 35px 0 180px;}
   margin-right: 10px;
   padding-top: 5px;
   text-align: center;
-  width: 40px;border: 1px solid #006500;
+  width: 40px;border: 1px solid#4db6e5;
 }
 
 .footer-social a:hover {background-color: #222;border-color: #666}
@@ -605,19 +605,19 @@ padding: 35px 0 180px;}
     width: 100%;
 }
 .newsletter-form input[type="submit"] {
-    background: none repeat scroll 0 0 #006500;
+    background: none repeat scroll 0 0 #4db6e5;
     border: medium none;
     color: #fff;
     display: inline-block;
     font-size: 18px;
     padding: 7px 20px;
-    text-transform: uppercase;border: 1px solid #006500;
+    text-transform: uppercase;border: 1px solid #4db6e5;
 }
 .newsletter-form input[type="submit"]:hover {background: #222;border-color: #666}
 .newsletter-form {
     margin-top: 25px;
 }
-a {color: #006500}
+a {color: #4db6e5}
 a:hover, a:focus {color: #17a78b}
 .footer-bottom-area {
   background: none repeat scroll 0 0 #000;
@@ -678,7 +678,7 @@ width: 10px;
   margin: 10px 0 0;
 }
 
-.product-big-title-area {background: url("../img/crossword.png") repeat scroll 0 0 #006500}
+.product-big-title-area {background: url("../img/crossword.png") repeat scroll 0 0 ##4db6e5}
 
 .product-bit-title h2 {
   font-family: raleway;
