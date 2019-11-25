@@ -18,8 +18,8 @@
                 <div class="footer-menu">
                     <h2 class="footer-wid-title">Navegação </h2>
                     <ul>
-                        <li><a href="#">Minha Conta</a></li>
-                        <li><a href="#">Meus Pedidos</a></li>
+                        <li><a href="/profile">Minha Conta</a></li>
+                        <li><a href="/profile/orders">Meus Pedidos</a></li>
                         <li><a href="#">Lista de Desejos</a></li>
                     </ul>                        
                 </div>
@@ -29,11 +29,7 @@
                 <div class="footer-menu">
                     <h2 class="footer-wid-title">Categorias</h2>
                     <ul>
-                        <li><a href="#">Categoria Um</a></li>
-                        <li><a href="#">Categoria Dois</a></li>
-                        <li><a href="#">Categoria Três</a></li>
-                        <li><a href="#">Categoria Quarto</a></li>
-                        <li><a href="#">Categoria Cinco</a></li>
+                        <?php require $this->checkTemplate("categories-menu");?>
                     </ul>                        
                 </div>
             </div>

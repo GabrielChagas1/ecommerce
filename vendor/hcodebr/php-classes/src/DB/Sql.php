@@ -7,7 +7,7 @@ class Sql {
 	const HOSTNAME = "127.0.0.1";
 	const USERNAME = "root";
 	const PASSWORD = "";
-	const DBNAME = "db_ecommerce";
+	const DBNAME = "trabalhophp";
 
 	private $conn;
 
@@ -57,6 +57,9 @@ class Sql {
 		$stmt = $this->conn->prepare($rawQuery);
 
 		$this->setParams($stmt, $params);
+
+		//var_dump($stmt, $params);
+		//exit;
 
 		$stmt->execute();
 

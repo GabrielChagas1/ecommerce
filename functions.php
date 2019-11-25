@@ -25,6 +25,8 @@ function getCartNrQtd(){
 
 function getCartVlSubTotal(){
     $cart = Cart::getFromSession();
+    // var_dump('auqiuieriuraiwerdzi');
+    // exit;
     $totals = $cart->getProductsTotals();
     return $totals['vlprice'];
 }
