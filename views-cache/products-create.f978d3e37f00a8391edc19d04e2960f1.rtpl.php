@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
               <label for="desproduct">Fornecedores</label>
-              <select class="form-control" name="idfornecedor">
+              <select class="form-control" name="idprovider">
                   <option value="0" disabled selected>Escolha um fornecedor</option>
 
                   <?php $counter1=-1;  if( isset($providers) && ( is_array($providers) || $providers instanceof Traversable ) && sizeof($providers) ) foreach( $providers as $key1 => $value1 ){ $counter1++; ?>

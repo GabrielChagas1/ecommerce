@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
               <label for="descategory">CNPJ</label>
-              <input type="text" class="form-control" id="descnpj" name="descnpj" placeholder="Digite o CNPJ" pattern="[0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2}">
+              <input type="text" class="form-control" id="descnpj" name="descnpj" placeholder="Digite o CNPJ">
             </div>
             <div class="form-group">
               <label for="descategory">Telefone</label>
